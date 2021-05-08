@@ -2,9 +2,7 @@ import React from 'react';
 
 const Proyecto = ({proyecto}) => {
     return ( 
-        <li>
-            {proyecto.nombre}
-        </li>
+        <li>{proyecto.nombre}</li>
     );
 }
  
