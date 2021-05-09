@@ -5,7 +5,13 @@ const NuevoProyecto = () => {
 
     // Obtener el State del formulario
     const proyectosContext = useContext(proyectoContext);
-    const {formulario, mostrarFormulario} = proyectosContext;
+    const {
+        formulario,
+        errorformulario, 
+        mostrarFormulario, 
+        agregarProyecto,
+        mostrarError
+    } = proyectosContext;
 
     // State de Proyecto 
     const [proyecto, guardarProyecto] = useState({
@@ -28,10 +34,16 @@ const NuevoProyecto = () => {
         e.preventDefault();
 
         // Validar campo del proyecto
-
+        if(nombre === ""){
+            mostrarError();
+            return;
+        }
         // Agregar State
-
+        agregarProyecto(proyecto);
         // Renicia form
+        guardarProyecto({
+            nombre: ""
+        });
         
     }
 
@@ -70,6 +82,9 @@ const NuevoProyecto = () => {
                 ></input>
 
             </form>)
+            : null}
+            {errorformulario 
+            ? (<p className="mensaje error">El nombre del proyecto es obligatorio</p>)
             : null
             }
         </Fragment>
